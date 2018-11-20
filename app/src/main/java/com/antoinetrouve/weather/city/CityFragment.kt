@@ -19,15 +19,16 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //  set database instance
         database = App.database
-        cities = mutableListOf()
         // enable Menu
         setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_city, container, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.cities_recycler_view)
+        recyclerView = view.findViewById<RecyclerView>(R.id.cities_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         return view
@@ -36,6 +37,7 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        cities = database.getAllCities()
         adapter = CityAdapter(cities, this)
         recyclerView.adapter = adapter
     }
@@ -64,7 +66,6 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-
     private fun showCreateCityDialog() {
         val createCityFragment = CreateCityDialogFragment()
         createCityFragment.listener = object: CreateCityDialogFragment.CreateCityDialogListener {
@@ -81,6 +82,7 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
     private fun saveCity(city: City) {
         if (database.CreateCity(city)) {
             cities.add(city)
+            adapter.notifyDataSetChanged()
         } else {
             Toast.makeText(
                 context,

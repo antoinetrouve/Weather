@@ -11,11 +11,13 @@ import com.antoinetrouve.weather.R
 class CityAdapter(private val cities: List<City>,
                   private val  cityListener: CityAdapter.CityItemListener)
     : RecyclerView.Adapter<CityAdapter.ViewHolder>(), View.OnClickListener {
+
     interface CityItemListener {
 
         fun onCitySelected(city: City)
         fun onCityDeleted(city: City)
     }
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cardView = itemView.findViewById<CardView>(R.id.card_view)!!
         val cityNameView = itemView.findViewById<TextView>(R.id.name)!!
