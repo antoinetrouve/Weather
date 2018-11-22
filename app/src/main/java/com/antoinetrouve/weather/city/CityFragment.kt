@@ -5,10 +5,10 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
-import android.widget.Toast
 import com.antoinetrouve.weather.App
 import com.antoinetrouve.weather.Database
 import com.antoinetrouve.weather.R
+import com.antoinetrouve.weather.utils.toast
 
 class CityFragment : Fragment(), CityAdapter.CityItemListener {
 
@@ -63,7 +63,7 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
     }
 
     override fun onCityDeleted(city: City) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        showDeleteCityDialog(city)
     }
 
     private fun showCreateCityDialog() {
@@ -79,15 +79,36 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
         createCityFragment.show(fragmentManager, "CreateCityDialogFragment")
     }
 
+    private fun showDeleteCityDialog(city: City) {
+        val deleteCityFragment = DeleteCityDialogFragment.newInstance(city.name)
+
+        deleteCityFragment.listener = object: DeleteCityDialogFragment.DeleteCityDialogListener {
+            override fun onDialogPositiveClick() {
+                deleteCity(city)
+            }
+
+            override fun onDialogNegativeClick() { }
+        }
+
+        deleteCityFragment.show(fragmentManager, "DeleteDialogFragment")
+    }
+
     private fun saveCity(city: City) {
         if (database.CreateCity(city)) {
             cities.add(city)
             adapter.notifyDataSetChanged()
         } else {
-            Toast.makeText(
-                context,
-                "Could not create city",
-                Toast.LENGTH_LONG).show()
+            context?.toast(getString(R.string.citymessage_error_could_not_create))
+        }
+    }
+
+    private fun deleteCity(city: City) {
+        if (database.deleteCity(city)) {
+            cities.remove(city)
+            adapter.notifyDataSetChanged()
+            context?.toast(getString(R.string.citymessage_info_delete, city.name))
+        } else {
+            context?.toast(getString(R.string.citymessage_error_could_not_delete, city.name))
         }
     }
 }
