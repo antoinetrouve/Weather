@@ -12,4 +12,8 @@
     <string name="citymessage_error_could_not_delete">Could not delete city %1$s</string>
     <string name="citymessage_info_delete">%1$s was deleted with success !</string>
     <string name="weather_message_error_could_not_load">Could not load city weather</string>
+
+    <string name="weather_temperature_value">%1$d °C</string>
+    <string name="weather_humidity_value">%1$d %%</string>
+    <string name="weather_pressure_value">%1$d hPa</string>
 </resources>
