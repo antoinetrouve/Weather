@@ -15,6 +15,7 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
 
     interface CityFragmentListener {
         fun onCitySelected(city: City)
+        fun onEmptyCities()
     }
 
     var listener: CityFragmentListener? = null
@@ -73,6 +74,13 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
         showDeleteCityDialog(city)
     }
 
+    fun selectFirstCity() {
+        when (cities.isEmpty()) {
+            true -> listener?.onEmptyCities()
+            false -> onCitySelected(cities.first())
+        }
+    }
+
     private fun showCreateCityDialog() {
         val createCityFragment = CreateCityDialogFragment()
         createCityFragment.listener = object: CreateCityDialogFragment.CreateCityDialogListener {
@@ -113,6 +121,7 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
         if (database.deleteCity(city)) {
             cities.remove(city)
             adapter.notifyDataSetChanged()
+            selectFirstCity()
             context?.toast(getString(R.string.citymessage_info_delete, city.name))
         } else {
             context?.toast(getString(R.string.citymessage_error_could_not_delete, city.name))
