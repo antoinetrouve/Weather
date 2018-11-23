@@ -2,13 +2,13 @@ package com.antoinetrouve.weather.openweathermap
 
 import com.antoinetrouve.weather.weather.Weather
 
-fun mapOpenWeaetherDataToWeather(weatherWrapper: WeatherWrapper) : Weather {
-    val weatherFirst = weatherWrapper.weather.first()
+fun mapOpenWeatherDataToWeather(weatherWrapper: WeatherWrapper) : Weather {
+    val weather = weatherWrapper.weather.first()
     return Weather(
-        description = weatherFirst.desciption,
+        description = weather.description,
         temperature = weatherWrapper.main.temperature,
         humidity = weatherWrapper.main.humidity,
         pressure = weatherWrapper.main.pressure,
-        iconUrl = "https://openweathermap.org/img/w/${weatherFirst.icon}.png"
+        iconUrl = "https://openweathermap.org/img/w/${weather.icon}.png"
     )
 }

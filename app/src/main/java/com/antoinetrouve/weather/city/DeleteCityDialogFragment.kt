@@ -2,7 +2,6 @@ package com.antoinetrouve.weather.city
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import com.antoinetrouve.weather.R
@@ -38,10 +37,10 @@ class DeleteCityDialogFragment : DialogFragment() {
         val builder = AlertDialog.Builder(context)
 
         builder.setTitle(getString(R.string.deletecity_title, cityName))
-            .setPositiveButton(getString(R.string.deletecity_positive),
-                { _, _ -> listener?.onDialogPositiveClick() })
-            .setNegativeButton(getString(R.string.deletecity_negative),
-                { _, _ -> listener?.onDialogPositiveClick() })
+            .setPositiveButton(getString(R.string.deletecity_positive)
+            ) { _, _ -> listener?.onDialogPositiveClick() }
+            .setNegativeButton(getString(R.string.deletecity_negative)
+            ) { _, _ -> listener?.onDialogPositiveClick() }
 
         return builder.create()
     }
