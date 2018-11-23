@@ -13,6 +13,7 @@ import com.antoinetrouve.weather.App
 import com.antoinetrouve.weather.R
 import com.antoinetrouve.weather.openweathermap.WeatherWrapper
 import com.antoinetrouve.weather.openweathermap.mapOpenWeatherDataToWeather
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -75,6 +76,12 @@ class WeatherFragment : Fragment() {
     }
 
     private fun updateUi(weather: Weather) {
+
+        Picasso.get()
+            .load(weather.iconUrl)
+            .placeholder(R.drawable.ic_cloud_off_black_24dp)
+            .into(weatherIcon)
+
         weatherDescription.text = weather.description
         temperature.text = getString(R.string.weather_temperature_value, weather.temperature.toInt())
         humidity.text = getString(R.string.weather_humidity_value, weather.humidity)
