@@ -12,6 +12,14 @@ import com.antoinetrouve.weather.utils.toast
 
 class CityFragment : Fragment(), CityAdapter.CityItemListener {
 
+
+    interface CityFragmentListener {
+        fun onCitySelected(city: City)
+        fun onEmptyCities()
+    }
+
+    var listener: CityFragmentListener? = null
+
     private lateinit var  cities: MutableList<City>
     private lateinit var database: Database
     private lateinit var recyclerView: RecyclerView
@@ -59,11 +67,18 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
     }
 
     override fun onCitySelected(city: City) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        listener?.onCitySelected(city)
     }
 
     override fun onCityDeleted(city: City) {
         showDeleteCityDialog(city)
+    }
+
+    fun selectFirstCity() {
+        when (cities.isEmpty()) {
+            true -> listener?.onEmptyCities()
+            false -> onCitySelected(cities.first())
+        }
     }
 
     private fun showCreateCityDialog() {
@@ -106,6 +121,7 @@ class CityFragment : Fragment(), CityAdapter.CityItemListener {
         if (database.deleteCity(city)) {
             cities.remove(city)
             adapter.notifyDataSetChanged()
+            selectFirstCity()
             context?.toast(getString(R.string.citymessage_info_delete, city.name))
         } else {
             context?.toast(getString(R.string.citymessage_error_could_not_delete, city.name))
