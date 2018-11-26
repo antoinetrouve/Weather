@@ -42,6 +42,6 @@
 - Improve UI
 
 ## Author
-**Antoine Trouvé**, Android and Symfony developper
-http://www.linkedin.com/in/antoinetrouve-devmobile
+<a href="http://www.linkedin.com/in/antoinetrouve-devmobile" target="_blank">**Antoine Trouvé**</a>,
+Android and Symfony developper
 
