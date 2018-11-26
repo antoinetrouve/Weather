@@ -1,7 +1,8 @@
 # Weather Android Application
 
-![Version](https://img.shields.io/badge/version-1.0-green.svg)
-![Kotlin](https://img.shields.io/badge/Kotlin-1.3-%37a1ff.svg)
+![Version](https://img.shields.io/badge/Version-1.0-brightgreen.svg)
+![System](https://img.shields.io/badge/Version-4.1--8.1-green.svg?logo=Android&longCache=true&style=flat)
+![Kotlin](https://img.shields.io/badge/Kotlin-1.3-blue.svg?logo=Kotlin&longCache=true&style=flat)
 ![Retrofit2](https://img.shields.io/badge/Retrofit2-2.4.0-%2348B983.svg)
 ![Picasso](https://img.shields.io/badge/Picasso-2.71828-%23B94948.svg)
 ![API](https://img.shields.io/badge/Api-OpenWeatherMap-orange.svg)
