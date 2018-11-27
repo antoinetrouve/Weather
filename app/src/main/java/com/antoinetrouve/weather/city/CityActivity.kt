@@ -19,7 +19,7 @@ class CityActivity : AppCompatActivity(), CityFragment.CityFragmentListener {
         cityFragment = supportFragmentManager.findFragmentById(R.id.city_fragment) as CityFragment
         cityFragment.listener = this
 
-        weatherFragment = supportFragmentManager.findFragmentById(R.id.weather_fragment) as WeatherFragment
+        weatherFragment = supportFragmentManager.findFragmentById(R.id.weather_fragment) as WeatherFragment?
     }
 
     override fun onCitySelected(city: City) {
