@@ -40,7 +40,7 @@ class DeleteCityDialogFragment : DialogFragment() {
             .setPositiveButton(getString(R.string.deletecity_positive)
             ) { _, _ -> listener?.onDialogPositiveClick() }
             .setNegativeButton(getString(R.string.deletecity_negative)
-            ) { _, _ -> listener?.onDialogPositiveClick() }
+            ) { _, _ -> listener?.onDialogNegativeClick() }
 
         return builder.create()
     }

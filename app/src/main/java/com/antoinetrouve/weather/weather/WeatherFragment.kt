@@ -74,10 +74,10 @@ class WeatherFragment : Fragment() {
 
             override fun onResponse(call: Call<WeatherWrapper>?, response: Response<WeatherWrapper>?) {
                 response?.body()?.let {
+                    refreshLayout.isRefreshing = false
                     val weather = mapOpenWeatherDataToWeather(it)
                     Log.i(TAG, "Weather response : $weather ")
                     updateUi(weather)
-                    refreshLayout.isRefreshing = false
                 }
             }
 
@@ -85,7 +85,7 @@ class WeatherFragment : Fragment() {
                 Log.e(TAG, "Could not load city weather", t)
                 Toast.makeText(activity,
                     getString(R.string.weather_message_error_could_not_load),
-                    Toast.LENGTH_SHORT)
+                    Toast.LENGTH_SHORT).show()
                 refreshLayout.isRefreshing = false
             }
         })
