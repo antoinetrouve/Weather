@@ -9,6 +9,9 @@
 
 *Add your city and enjoy weather information. You need Internet to get it.*
 
+## Play Store
+https://play.google.com/store/apps/details?id=com.antoinetrouve.weather
+
 ## Functionality
 
 ### What can I do with the application ?
